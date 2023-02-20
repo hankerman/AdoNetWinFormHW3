@@ -30,17 +30,25 @@
         {
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabCountry = new System.Windows.Forms.TabPage();
+            this.btnDeleteCountry = new System.Windows.Forms.Button();
+            this.btnEditCountry = new System.Windows.Forms.Button();
+            this.btnAddCountry = new System.Windows.Forms.Button();
             this.CountryGrid = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.CitiesTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.MainTab.SuspendLayout();
             this.tabCountry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CountryGrid)).BeginInit();
+            this.CitiesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTab
             // 
             this.MainTab.Controls.Add(this.tabCountry);
-            this.MainTab.Controls.Add(this.tabPage2);
+            this.MainTab.Controls.Add(this.CitiesTab);
             this.MainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTab.Location = new System.Drawing.Point(0, 0);
             this.MainTab.Name = "MainTab";
@@ -51,6 +59,9 @@
             // 
             // tabCountry
             // 
+            this.tabCountry.Controls.Add(this.btnDeleteCountry);
+            this.tabCountry.Controls.Add(this.btnEditCountry);
+            this.tabCountry.Controls.Add(this.btnAddCountry);
             this.tabCountry.Controls.Add(this.CountryGrid);
             this.tabCountry.Location = new System.Drawing.Point(4, 24);
             this.tabCountry.Name = "tabCountry";
@@ -59,6 +70,36 @@
             this.tabCountry.TabIndex = 0;
             this.tabCountry.Text = "Страны";
             this.tabCountry.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteCountry
+            // 
+            this.btnDeleteCountry.Location = new System.Drawing.Point(855, 84);
+            this.btnDeleteCountry.Name = "btnDeleteCountry";
+            this.btnDeleteCountry.Size = new System.Drawing.Size(128, 33);
+            this.btnDeleteCountry.TabIndex = 1;
+            this.btnDeleteCountry.Text = "Удалить страну";
+            this.btnDeleteCountry.UseVisualStyleBackColor = true;
+            this.btnDeleteCountry.Click += new System.EventHandler(this.btnDeleteCountry_Click);
+            // 
+            // btnEditCountry
+            // 
+            this.btnEditCountry.Location = new System.Drawing.Point(853, 45);
+            this.btnEditCountry.Name = "btnEditCountry";
+            this.btnEditCountry.Size = new System.Drawing.Size(128, 33);
+            this.btnEditCountry.TabIndex = 1;
+            this.btnEditCountry.Text = "Изменить страну";
+            this.btnEditCountry.UseVisualStyleBackColor = true;
+            this.btnEditCountry.Click += new System.EventHandler(this.btnEditCountry_Click);
+            // 
+            // btnAddCountry
+            // 
+            this.btnAddCountry.Location = new System.Drawing.Point(853, 6);
+            this.btnAddCountry.Name = "btnAddCountry";
+            this.btnAddCountry.Size = new System.Drawing.Size(128, 33);
+            this.btnAddCountry.TabIndex = 1;
+            this.btnAddCountry.Text = "Добавить страну";
+            this.btnAddCountry.UseVisualStyleBackColor = true;
+            this.btnAddCountry.Click += new System.EventHandler(this.btnAddCountry_Click);
             // 
             // CountryGrid
             // 
@@ -72,19 +113,50 @@
             this.CountryGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.CountryGrid.Location = new System.Drawing.Point(6, 6);
             this.CountryGrid.Name = "CountryGrid";
+            this.CountryGrid.RowHeadersVisible = false;
             this.CountryGrid.RowTemplate.Height = 25;
+            this.CountryGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.CountryGrid.Size = new System.Drawing.Size(841, 476);
             this.CountryGrid.TabIndex = 0;
             // 
-            // tabPage2
+            // CitiesTab
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(989, 488);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.CitiesTab.Controls.Add(this.button1);
+            this.CitiesTab.Controls.Add(this.dataGridView1);
+            this.CitiesTab.Controls.Add(this.comboBox1);
+            this.CitiesTab.Location = new System.Drawing.Point(4, 24);
+            this.CitiesTab.Name = "CitiesTab";
+            this.CitiesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.CitiesTab.Size = new System.Drawing.Size(989, 488);
+            this.CitiesTab.TabIndex = 1;
+            this.CitiesTab.Text = "Города";
+            this.CitiesTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(211, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(8, 35);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(816, 445);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(6, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(199, 23);
+            this.comboBox1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -98,6 +170,8 @@
             this.MainTab.ResumeLayout(false);
             this.tabCountry.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CountryGrid)).EndInit();
+            this.CitiesTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -107,6 +181,12 @@
         private TabControl MainTab;
         private TabPage tabCountry;
         private DataGridView CountryGrid;
-        private TabPage tabPage2;
+        private TabPage CitiesTab;
+        private Button btnDeleteCountry;
+        private Button btnEditCountry;
+        private Button btnAddCountry;
+        private Button button1;
+        private DataGridView dataGridView1;
+        private ComboBox comboBox1;
     }
 }

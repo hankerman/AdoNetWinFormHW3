@@ -1,3 +1,4 @@
+using AdoNetWinFormHW3.Forms;
 using AdoNetWinFormHW3.Services;
 using AdoNetWinformsApp.Services;
 
@@ -30,6 +31,46 @@ namespace AdoNetWinFormHW3
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadTabMethods[0]();
+        }
+
+        private async void btnAddCountry_Click(object sender, EventArgs e)
+        {
+            var pairs = await _countryService.GetCountryPairs();
+            var form = new AddOrEditCountry(pairs);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                await _countryService.AddCountry(form.CountryName, form.Area, form.PartOfWorlds);
+                LoadCountry();
+            }
+        }
+
+        private async void btnDeleteCountry_Click(object sender, EventArgs e)
+        {
+            if (CountryGrid.SelectedRows.Count > 0)
+            {
+                var countryId = int.Parse(CountryGrid.SelectedRows[0].Cells[0].Value.ToString()!);
+                try
+                {
+                    await _countryService.DeleteCountry(countryId);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    LoadCountry();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите страну для удаления.");
+            }
+        }
+
+        private async void btnEditCountry_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

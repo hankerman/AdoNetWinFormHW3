@@ -23,7 +23,7 @@ namespace AdoNetWinformsApp.Services
                 row[1] = country.Name;
                 row[2] = country.Area;
                 row[3] = country.PartOfWorld;
-                row[4] = country.Capital.Name;
+                row[4] = country.Capital?.Name;
                 table.Rows.Add(row);
             }
             return table;
