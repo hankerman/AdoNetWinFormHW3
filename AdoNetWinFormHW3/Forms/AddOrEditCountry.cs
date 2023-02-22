@@ -24,14 +24,15 @@ namespace AdoNetWinFormHW3.Forms
             PopulateComboboxPartOfWorld();
 
         }
-        public AddOrEditCountry(List<KeyValuePair<string, int>> CapitalPair, PartOfWorld partOfWorld, List<KeyValuePair<string, int>> capital)
+        public AddOrEditCountry(List<KeyValuePair<string, int>> CapitalPair, string name, decimal area, PartOfWorld partOfWorld, int? capitalId)
         {
             InitializeComponent();
             labelCountry.Visible = true;
             CapitalCombobox.Visible = true;
-            PopulateComboboxCapital(CapitalPair);
+            PopulateComboboxCapital(CapitalPair, CapitalIdIsInt(capitalId));
             PopulateComboboxPartOfWorld((int)partOfWorld);
-
+            numericArea.Value = area;
+            txtName.Text = name;
         }
         private void PopulateComboboxCapital(List<KeyValuePair<string, int>> keyValuePairs, int id = 0)
         {
@@ -54,8 +55,17 @@ namespace AdoNetWinFormHW3.Forms
             PartOfWorldCombobox.DisplayMember = "Key";
             PartOfWorldCombobox.ValueMember = "Value";
             PartOfWorldCombobox.DataSource = pairs;
+            PartOfWorldCombobox.SelectedItem = pairs.First(x => x.Value == id);
         }
 
+        private int CapitalIdIsInt(int? Id)
+        {
+            if(Id == null)
+            {
+                return 0;
+            }
+            return (int)Id;
+        }
         private void txtName_Validating(object sender, CancelEventArgs e)
         {
             if (txtName.Text.Trim().Length > DatabaseDefaults.StringValueMaxLength)
@@ -93,7 +103,7 @@ namespace AdoNetWinFormHW3.Forms
         {
             if ((int)PartOfWorldCombobox.SelectedValue == 0)
             {
-                errorPartOfWorld.SetError(PartOfWorldCombobox, "Выберите тип товара!");
+                errorPartOfWorld.SetError(PartOfWorldCombobox, "Выберите часть света!");
                 e.Cancel = true;
             }
             else

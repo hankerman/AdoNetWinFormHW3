@@ -70,7 +70,42 @@ namespace AdoNetWinFormHW3
 
         private async void btnEditCountry_Click(object sender, EventArgs e)
         {
-            
+            if (CountryGrid.SelectedRows.Count > 0)
+            {
+                var countryId = int.Parse(CountryGrid.SelectedRows[0].Cells[0].Value.ToString()!);
+                var country = await _countryService.GetCountryId(countryId);
+                if (country == null)
+                {
+                    MessageBox.Show("Товар не найден");
+                    LoadCountry();
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        var pairs = await _countryService.GetCountryPairs();
+                        var form = new AddOrEditCountry(pairs, country.Name, country.Area, country.PartOfWorld, country.CapitalId);
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            await _countryService.EditCountry(country, form.CountryName, form.Area, form.PartOfWorlds, form.Capital);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        LoadCountry();
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Выберите тип товара для изменения.");
+            }
         }
     }
 }

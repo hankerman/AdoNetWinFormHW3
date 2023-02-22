@@ -50,5 +50,13 @@ namespace AdoNetWinFormHW3.Services
         {
             return await _context.Countries.FindAsync(id);
         }
+        public async Task EditCountry(Country country, string newName, decimal newArea, PartOfWorld newpartOfWorld, int newCapitalId)
+        {
+            country.Name = newName;
+            country.Area = newArea;
+            country.PartOfWorld = newpartOfWorld;
+            country.CapitalId = newCapitalId;
+            await _context.SaveChangesAsync();
+        }
     }
 }

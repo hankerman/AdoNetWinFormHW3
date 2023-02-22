@@ -8,7 +8,7 @@ namespace AdoNetWinFormHW3.Constans
 {
     public enum PartOfWorld
     {
-        Europe = 0,
+        Europe = 1,
         Asia,
         Africa,
         America,
