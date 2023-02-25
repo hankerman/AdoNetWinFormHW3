@@ -13,8 +13,8 @@ namespace AdoNetWinFormHW3
             _countryService = new CountryService();
             LoadTabMethods = new Dictionary<int, Action>
             {
-                {0, () =>  LoadCountry()}
-                
+                {0, () =>  LoadCountry()},
+                {1, () => LoadCities()}                
             };
             InitializeComponent();
         }
@@ -27,6 +27,12 @@ namespace AdoNetWinFormHW3
             TableCreatorService.ShowTable(
                 CountryGrid,
                 TableCreatorService.CreateCountryTable(await _countryService.GetCountry()));
+        }
+        private async void LoadCities()
+        {
+            TableCreatorService.ShowTable(
+                CitiesGrid,
+                TableCreatorService.CreateCityTable(await _countryService.GetCity()));
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

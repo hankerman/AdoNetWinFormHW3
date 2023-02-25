@@ -28,6 +28,26 @@ namespace AdoNetWinformsApp.Services
             }
             return table;
         }
+        public static DataTable CreateCityTable(List<City> cities)
+        {
+            DataTable table = new();
+            table.Clear();
+            table.Columns.Add("Id");
+            table.Columns.Add("Название");
+            table.Columns.Add("Население");
+            table.Columns.Add("Страна");
+
+            foreach (var city in cities)
+            {
+                DataRow row = table.NewRow();
+                row[0] = city.Id;
+                row[1] = city.Name;
+                row[2] = city.Population;
+                row[3] = city.Country.Name;
+                table.Rows.Add(row);
+            }
+            return table;
+        }
 
         public static void ShowTable(DataGridView grid, DataTable table)
         {

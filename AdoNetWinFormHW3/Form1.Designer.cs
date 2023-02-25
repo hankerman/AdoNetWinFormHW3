@@ -36,13 +36,13 @@
             this.CountryGrid = new System.Windows.Forms.DataGridView();
             this.CitiesTab = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CitiesGrid = new System.Windows.Forms.DataGridView();
             this.MainTab.SuspendLayout();
             this.tabCountry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CountryGrid)).BeginInit();
             this.CitiesTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CitiesGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTab
@@ -121,8 +121,8 @@
             // 
             // CitiesTab
             // 
+            this.CitiesTab.Controls.Add(this.CitiesGrid);
             this.CitiesTab.Controls.Add(this.button1);
-            this.CitiesTab.Controls.Add(this.dataGridView1);
             this.CitiesTab.Controls.Add(this.comboBox1);
             this.CitiesTab.Location = new System.Drawing.Point(4, 24);
             this.CitiesTab.Name = "CitiesTab";
@@ -141,15 +141,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 35);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(816, 445);
-            this.dataGridView1.TabIndex = 1;
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -157,6 +148,24 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(199, 23);
             this.comboBox1.TabIndex = 0;
+            // 
+            // CitiesGrid
+            // 
+            this.CitiesGrid.AllowUserToAddRows = false;
+            this.CitiesGrid.AllowUserToDeleteRows = false;
+            this.CitiesGrid.AllowUserToResizeRows = false;
+            this.CitiesGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CitiesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CitiesGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.CitiesGrid.Location = new System.Drawing.Point(6, 35);
+            this.CitiesGrid.Name = "CitiesGrid";
+            this.CitiesGrid.RowHeadersVisible = false;
+            this.CitiesGrid.RowTemplate.Height = 25;
+            this.CitiesGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CitiesGrid.Size = new System.Drawing.Size(816, 447);
+            this.CitiesGrid.TabIndex = 3;
             // 
             // Form1
             // 
@@ -171,7 +180,7 @@
             this.tabCountry.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CountryGrid)).EndInit();
             this.CitiesTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CitiesGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,7 +195,7 @@
         private Button btnEditCountry;
         private Button btnAddCountry;
         private Button button1;
-        private DataGridView dataGridView1;
         private ComboBox comboBox1;
+        private DataGridView CitiesGrid;
     }
 }

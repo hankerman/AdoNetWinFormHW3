@@ -22,7 +22,7 @@ namespace AdoNetWinFormHW3.Services
         }
         public async Task<List<KeyValuePair<string, int>>> GetCountryPairs()
         {
-            return await _context.Countries
+            return await _context.Cities
                 .Select(x => new KeyValuePair<string, int>(x.Name, x.Id))
                 .ToListAsync();
         }
@@ -57,6 +57,10 @@ namespace AdoNetWinFormHW3.Services
             country.PartOfWorld = newpartOfWorld;
             country.CapitalId = newCapitalId;
             await _context.SaveChangesAsync();
+        }
+        public async Task<List<City>> GetCity()
+        {
+            return await _context.Cities.ToListAsync();
         }
     }
 }
