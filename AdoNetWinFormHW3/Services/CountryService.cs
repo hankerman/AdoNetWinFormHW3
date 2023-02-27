@@ -20,16 +20,29 @@ namespace AdoNetWinFormHW3.Services
         {
             return await _context.Countries.ToListAsync();
         }
-        public async Task<List<KeyValuePair<string, int>>> GetCountryPairs()
+        public async Task<List<KeyValuePair<string, int>>> GetCountryPairsAsync()
+        {
+            return await _context.Countries
+                .Select(x => new KeyValuePair<string, int>(x.Name, x.Id))
+                .ToListAsync();
+        }
+        public async Task<List<KeyValuePair<string, int>>> GetCityPairsAsync()
         {
             return await _context.Cities
                 .Select(x => new KeyValuePair<string, int>(x.Name, x.Id))
                 .ToListAsync();
         }
+
         public async Task AddCountry(string countryName, decimal area, PartOfWorld partOfWorld)
         {
             var country = new Country { Name = countryName, Area = area, PartOfWorld = partOfWorld  };
             await _context.Countries.AddAsync(country);
+            await _context.SaveChangesAsync();
+        }
+        public async Task AddCity(string cityName, int population, int country)
+        {
+            var city = new City { Name = cityName, Population = population, CountryId = country };
+            await _context.Cities.AddAsync(city);
             await _context.SaveChangesAsync();
         }
         public async Task DeleteCountry(int id)
@@ -50,6 +63,10 @@ namespace AdoNetWinFormHW3.Services
         {
             return await _context.Countries.FindAsync(id);
         }
+        public async Task<City?> GetCityId(int id)
+        {
+            return await _context.Cities.FindAsync(id);
+        }
         public async Task EditCountry(Country country, string newName, decimal newArea, PartOfWorld newpartOfWorld, int newCapitalId)
         {
             country.Name = newName;
@@ -58,9 +75,47 @@ namespace AdoNetWinFormHW3.Services
             country.CapitalId = newCapitalId;
             await _context.SaveChangesAsync();
         }
-        public async Task<List<City>> GetCity()
+        public async Task EditCity(City city, string newName, int newPopulation, int newCountriId)
         {
+            city.Name = newName;
+            city.Population = newPopulation;
+            city.CountryId = newCountriId;
+            await _context.SaveChangesAsync();
+        }
+        public async Task<List<City>> GetCity(int countryId = 0)
+        {
+            if (countryId != 0)
+            {
+                return await _context.Cities
+                .Where(x => x.CountryId == countryId)
+                .ToListAsync();
+            }
+
             return await _context.Cities.ToListAsync();
         }
+        public void PopulateCombobox(ComboBox comboBox, List<KeyValuePair<string, int>> keyValuePairs, int id = 0)
+        {
+            var pairs = new List<KeyValuePair<string, int>>();
+            pairs.Add(new("Не выбран", 0));
+            pairs.AddRange(keyValuePairs);
+
+            comboBox.DisplayMember = "Key";
+            comboBox.ValueMember = "Value";
+            comboBox.DataSource = pairs;
+            comboBox.SelectedItem = pairs.First(x => x.Value == id);
+        }
+        public async Task<List<Country>> CapitalOver5K()
+        {
+            return await _context.Countries
+                .Where(x => x.Capital.Population >= 5000000)
+                .ToListAsync();
+        }
+        public async Task<List<string>> CountryName()
+        {
+            return await _context.Countries
+                .Select(x => x.Name)
+                .ToListAsync();
+        }
+       
     }
 }

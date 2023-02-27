@@ -48,6 +48,22 @@ namespace AdoNetWinformsApp.Services
             }
             return table;
         }
+        public static DataTable CreateStringTable(List<string> strings)
+        {
+            DataTable table = new();
+            table.Clear();
+            table.Columns.Add("Id");
+            table.Columns.Add("Название");
+
+            foreach (var x in strings)
+            {
+                DataRow row = table.NewRow();
+                row[0] = 0;
+                row[1] = x;
+                table.Rows.Add(row);
+            }
+            return table;
+        }
 
         public static void ShowTable(DataGridView grid, DataTable table)
         {
