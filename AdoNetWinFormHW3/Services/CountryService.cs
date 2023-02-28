@@ -59,6 +59,19 @@ namespace AdoNetWinFormHW3.Services
                 throw new Exception("Такой страны не существует");
             }
         }
+        public async Task DeleteCity(int id)
+        {
+            var city = await _context.Cities.FindAsync(id);
+            if (city != null)
+            {
+                _context.Cities.Remove(city);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Такого города не существует");
+            }
+        }
         public async Task<Country?> GetCountryId(int id)
         {
             return await _context.Countries.FindAsync(id);
@@ -116,6 +129,25 @@ namespace AdoNetWinFormHW3.Services
                 .Select(x => x.Name)
                 .ToListAsync();
         }
-       
+       public async Task<List<string>> CapitalName()
+        {
+            return await _context.Countries
+                .Select(x => x.Capital.Name)
+                .ToListAsync();
+        }
+        public async Task<List<string>> GrandCity(int countryId)
+        {
+            if(countryId == 0)
+            {
+                return await _context.Cities
+                .Where(x => x.Population > 1000000)
+                .Select(x => x.Name)
+                .ToListAsync();
+            }
+            return await _context.Cities
+                .Where(x => x.CountryId == countryId && x.Population > 1000000)
+                .Select(x => x.Name)
+                .ToListAsync();
+        }
     }
 }

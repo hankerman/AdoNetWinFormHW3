@@ -177,11 +177,6 @@ namespace AdoNetWinFormHW3
             }
         }
 
-        private void btnUpdateCitiesGrid_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CountryCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadCities((int)CountryCombobox.SelectedValue);
@@ -199,6 +194,44 @@ namespace AdoNetWinFormHW3
             TableCreatorService.ShowTable(
                 CountryGrid,
                 TableCreatorService.CreateStringTable(await _countryService.CountryName()));
+        }
+
+        private async void btnDeleteCity_Click(object sender, EventArgs e)
+        {
+            if (CitiesGrid.SelectedRows.Count > 0)
+            {
+                var cityId = int.Parse(CitiesGrid.SelectedRows[0].Cells[0].Value.ToString()!);
+                try
+                {
+                    await _countryService.DeleteCity(cityId);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    LoadCountry();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите город для удаления.");
+            }
+        }
+
+        private async void btnCapital_Click(object sender, EventArgs e)
+        {
+            TableCreatorService.ShowTable(
+                CitiesGrid,
+                TableCreatorService.CreateStringTable(await _countryService.CapitalName()));
+        }
+
+        private async void btnGrandCity_Click(object sender, EventArgs e)
+        {
+            TableCreatorService.ShowTable(
+                CitiesGrid,
+                TableCreatorService.CreateStringTable(await _countryService.GrandCity((int)CountryCombobox.SelectedValue)));
         }
     }
 }

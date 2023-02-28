@@ -30,19 +30,20 @@
         {
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabCountry = new System.Windows.Forms.TabPage();
+            this.btnCountryName = new System.Windows.Forms.Button();
             this.btnCapital5K = new System.Windows.Forms.Button();
             this.btnDeleteCountry = new System.Windows.Forms.Button();
             this.btnEditCountry = new System.Windows.Forms.Button();
             this.btnAddCountry = new System.Windows.Forms.Button();
             this.CountryGrid = new System.Windows.Forms.DataGridView();
             this.CitiesTab = new System.Windows.Forms.TabPage();
-            this.btnUpdateCitiesGrid = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnGrandCity = new System.Windows.Forms.Button();
+            this.btnCapital = new System.Windows.Forms.Button();
+            this.btnRemoveCity = new System.Windows.Forms.Button();
             this.btnEditCity = new System.Windows.Forms.Button();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.CountryCombobox = new System.Windows.Forms.ComboBox();
             this.CitiesGrid = new System.Windows.Forms.DataGridView();
-            this.btnCountryName = new System.Windows.Forms.Button();
             this.MainTab.SuspendLayout();
             this.tabCountry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CountryGrid)).BeginInit();
@@ -77,6 +78,16 @@
             this.tabCountry.TabIndex = 0;
             this.tabCountry.Text = "Страны";
             this.tabCountry.UseVisualStyleBackColor = true;
+            // 
+            // btnCountryName
+            // 
+            this.btnCountryName.Location = new System.Drawing.Point(853, 241);
+            this.btnCountryName.Name = "btnCountryName";
+            this.btnCountryName.Size = new System.Drawing.Size(128, 30);
+            this.btnCountryName.TabIndex = 3;
+            this.btnCountryName.Text = "Название стран";
+            this.btnCountryName.UseVisualStyleBackColor = true;
+            this.btnCountryName.Click += new System.EventHandler(this.btnCountryName_Click);
             // 
             // btnCapital5K
             // 
@@ -138,8 +149,9 @@
             // 
             // CitiesTab
             // 
-            this.CitiesTab.Controls.Add(this.btnUpdateCitiesGrid);
-            this.CitiesTab.Controls.Add(this.btnRemove);
+            this.CitiesTab.Controls.Add(this.btnGrandCity);
+            this.CitiesTab.Controls.Add(this.btnCapital);
+            this.CitiesTab.Controls.Add(this.btnRemoveCity);
             this.CitiesTab.Controls.Add(this.btnEditCity);
             this.CitiesTab.Controls.Add(this.btnAddCity);
             this.CitiesTab.Controls.Add(this.CountryCombobox);
@@ -152,24 +164,35 @@
             this.CitiesTab.Text = "Города";
             this.CitiesTab.UseVisualStyleBackColor = true;
             // 
-            // btnUpdateCitiesGrid
+            // btnGrandCity
             // 
-            this.btnUpdateCitiesGrid.Location = new System.Drawing.Point(211, 7);
-            this.btnUpdateCitiesGrid.Name = "btnUpdateCitiesGrid";
-            this.btnUpdateCitiesGrid.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateCitiesGrid.TabIndex = 8;
-            this.btnUpdateCitiesGrid.Text = "Обновить";
-            this.btnUpdateCitiesGrid.UseVisualStyleBackColor = true;
-            this.btnUpdateCitiesGrid.Click += new System.EventHandler(this.btnUpdateCitiesGrid_Click);
+            this.btnGrandCity.Location = new System.Drawing.Point(906, 118);
+            this.btnGrandCity.Name = "btnGrandCity";
+            this.btnGrandCity.Size = new System.Drawing.Size(75, 50);
+            this.btnGrandCity.TabIndex = 9;
+            this.btnGrandCity.Text = "Большие города";
+            this.btnGrandCity.UseVisualStyleBackColor = true;
+            this.btnGrandCity.Click += new System.EventHandler(this.btnGrandCity_Click);
             // 
-            // btnRemove
+            // btnCapital
             // 
-            this.btnRemove.Location = new System.Drawing.Point(828, 64);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 7;
-            this.btnRemove.Text = "Удалить";
-            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnCapital.Location = new System.Drawing.Point(828, 118);
+            this.btnCapital.Name = "btnCapital";
+            this.btnCapital.Size = new System.Drawing.Size(75, 23);
+            this.btnCapital.TabIndex = 8;
+            this.btnCapital.Text = "Столицы";
+            this.btnCapital.UseVisualStyleBackColor = true;
+            this.btnCapital.Click += new System.EventHandler(this.btnCapital_Click);
+            // 
+            // btnRemoveCity
+            // 
+            this.btnRemoveCity.Location = new System.Drawing.Point(828, 64);
+            this.btnRemoveCity.Name = "btnRemoveCity";
+            this.btnRemoveCity.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveCity.TabIndex = 7;
+            this.btnRemoveCity.Text = "Удалить";
+            this.btnRemoveCity.UseVisualStyleBackColor = true;
+            this.btnRemoveCity.Click += new System.EventHandler(this.btnDeleteCity_Click);
             // 
             // btnEditCity
             // 
@@ -219,16 +242,6 @@
             this.CitiesGrid.Size = new System.Drawing.Size(816, 447);
             this.CitiesGrid.TabIndex = 3;
             // 
-            // btnCountryName
-            // 
-            this.btnCountryName.Location = new System.Drawing.Point(853, 241);
-            this.btnCountryName.Name = "btnCountryName";
-            this.btnCountryName.Size = new System.Drawing.Size(128, 30);
-            this.btnCountryName.TabIndex = 3;
-            this.btnCountryName.Text = "Название стран";
-            this.btnCountryName.UseVisualStyleBackColor = true;
-            this.btnCountryName.Click += new System.EventHandler(this.btnCountryName_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -260,9 +273,10 @@
         private ComboBox CountryCombobox;
         private Button btnAddCity;
         private Button btnEditCity;
-        private Button btnRemove;
-        private Button btnUpdateCitiesGrid;
+        private Button btnRemoveCity;
         private Button btnCapital5K;
         private Button btnCountryName;
+        private Button btnCapital;
+        private Button btnGrandCity;
     }
 }
