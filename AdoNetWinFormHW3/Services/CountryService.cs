@@ -149,5 +149,12 @@ namespace AdoNetWinFormHW3.Services
                 .Select(x => x.Name)
                 .ToListAsync();
         }
+        public async Task<List<string>> GetCountryStartChar(string charName)
+        {
+            return await _context.Countries
+                .Where(x => x.Name.Contains(charName))
+                .Select(x => x.Name)
+                .ToListAsync();
+        }
     }
 }

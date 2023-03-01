@@ -44,6 +44,7 @@
             this.btnAddCity = new System.Windows.Forms.Button();
             this.CountryCombobox = new System.Windows.Forms.ComboBox();
             this.CitiesGrid = new System.Windows.Forms.DataGridView();
+            this.btnCharP = new System.Windows.Forms.Button();
             this.MainTab.SuspendLayout();
             this.tabCountry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CountryGrid)).BeginInit();
@@ -65,6 +66,7 @@
             // 
             // tabCountry
             // 
+            this.tabCountry.Controls.Add(this.btnCharP);
             this.tabCountry.Controls.Add(this.btnCountryName);
             this.tabCountry.Controls.Add(this.btnCapital5K);
             this.tabCountry.Controls.Add(this.btnDeleteCountry);
@@ -242,6 +244,16 @@
             this.CitiesGrid.Size = new System.Drawing.Size(816, 447);
             this.CitiesGrid.TabIndex = 3;
             // 
+            // btnCharP
+            // 
+            this.btnCharP.Location = new System.Drawing.Point(853, 277);
+            this.btnCharP.Name = "btnCharP";
+            this.btnCharP.Size = new System.Drawing.Size(128, 31);
+            this.btnCharP.TabIndex = 4;
+            this.btnCharP.Text = "страны на букву р";
+            this.btnCharP.UseVisualStyleBackColor = true;
+            this.btnCharP.Click += new System.EventHandler(this.btnCharP_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -278,5 +290,6 @@
         private Button btnCountryName;
         private Button btnCapital;
         private Button btnGrandCity;
+        private Button btnCharP;
     }
 }

@@ -233,5 +233,12 @@ namespace AdoNetWinFormHW3
                 CitiesGrid,
                 TableCreatorService.CreateStringTable(await _countryService.GrandCity((int)CountryCombobox.SelectedValue)));
         }
+
+        private async void btnCharP_Click(object sender, EventArgs e)
+        {
+            TableCreatorService.ShowTable(
+                CountryGrid,
+                TableCreatorService.CreateStringTable(await _countryService.GetCountryStartChar("Ð")));
+        }
     }
 }
